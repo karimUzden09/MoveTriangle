@@ -1,7 +1,6 @@
 #include<iostream>
 #include<SFML/Graphics.hpp>
 #include<SFML/Window.hpp>
-#include<vector>
 using namespace sf;
 class Player {
 public:
@@ -49,13 +48,8 @@ int main()
 	float distansce = 0;
 	float dX = 0;
 	float dY = 0;
-	RectangleShape shaper(Vector2f(50, 50));
-	shaper.setPosition(55, 55);
-	shaper.setRotation(45);
-	std::vector<RectangleShape> Sharpes;
 
 
-	// run the program as long as the window is open
 	while (window.isOpen())
 	{
 		float time = clock.getElapsedTime().asMicroseconds();
@@ -64,12 +58,10 @@ int main()
 
 		sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
 		sf::Vector2f pos = window.mapPixelToCoords(pixelPos);
-		// check all the window's events that were triggered since the last iteration of the loop
 		sf::Event event;
 
 		while (window.pollEvent(event))
 		{
-			// "close requested" event: we close the window
 			if (event.type == sf::Event::Closed)
 				window.close();
 
@@ -99,11 +91,10 @@ int main()
 		if (rectangle.isMove)
 		{
 			distansce = sqrt((tempX - rectangle.x) * (tempX - rectangle.x) + (tempY - rectangle.y) * (tempY - rectangle.y));
-			if (distansce > 2) {//этим условием убираем дергание во время конечной позиции спрайта
+			if (distansce > 2) {
 
-				rectangle.x += 0.1 * time * (tempX - rectangle.x) / distansce;//идем по иксу с помощью вектора нормали
-				rectangle.y += 0.1 * time * (tempY - rectangle.y) / distansce;//идем по игреку так же
-				//Sharpes.push_back(rectangle.sprite);
+				rectangle.x += 0.1 * time * (tempX - rectangle.x) / distansce;
+				rectangle.y += 0.1 * time * (tempY - rectangle.y) / distansce;
 			}
 			else { rectangle.isMove = false; std::cout << "priehali\n"; }
 		}
