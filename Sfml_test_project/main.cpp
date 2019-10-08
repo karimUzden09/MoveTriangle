@@ -6,7 +6,7 @@ class Player {
 public:
 	float w, h, dx, dy, x, y, speed;
 	int dir, playerScore, health;
-	bool life, isMove, isSelect;//добавили переменные состояния движения и выбора объекта 
+	bool life, isMove, isSelect;
 	Texture texture;
 	RectangleShape sprite{ Vector2f(50,50) };
 	Player(float X, float Y, float W, float H) {
